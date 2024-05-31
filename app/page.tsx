@@ -2,15 +2,15 @@ import React from "react";
 import {use} from "react";
 import Parser from "rss-parser";
 
-type CustomFeed = { foo: string };
-type CustomItem = { bar: number };
-
 const fetchFeed = async () => {
+  type CustomFeed = { foo: string };
+  type CustomItem = { bar: number };
+
   const parser: Parser<CustomFeed, CustomItem> = new Parser();
 
   const feed = await parser.parseURL("https://netflixtechblog.com/feed");
 
-  const arr = feed.items.map((item: any) => item.title);
+  const arr = feed.items;//.map((item: any) => item.title);
 
   return arr;
 };
@@ -21,11 +21,12 @@ export default function Home() {
 
   const data = use(fetchData);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main>
       RSS Reader
       {data.map((item: any) => {
-        return <p>{item}</p>;
+        return <p>{item.title} : {item.link}</p>;
       })}
+      <button className="btn btn-primary">Button</button>
     </main>
   );
 }
