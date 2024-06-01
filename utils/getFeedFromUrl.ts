@@ -6,7 +6,7 @@ const fetchFeed = async () => {
 
   const parser: Parser<CustomFeed, CustomItem> = new Parser();
 
-  const feed = await parser.parseURL("https://old.reddit.com/r/memes.rss");
+  const feed = await parser.parseURL("https://timesofindia.indiatimes.com/rssfeedstopstories.cms");
 
   const arr = feed.items; //.map((item: any) => item.title);
 

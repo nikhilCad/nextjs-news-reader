@@ -14,13 +14,15 @@ export const newsColumn = (data: any) => {
         var img = doc.querySelector('img');
 
         const imageUrl = img?.rawAttributes?.src ? sanitizeImageUrl(img?.rawAttributes?.src) : undefined
+
+        console.log(imageUrl)
         
 
         return (
           <div className={classes.card}>
             <Link href={item.link} target="_blank" className={classes.cardHeading}>{item.title}</Link>
             {imageUrl &&(<img
-              src={img?.rawAttributes?.src}
+              src={imageUrl}
               alt={item.title}
               className={classes.cardImage}
             ></img>)}
