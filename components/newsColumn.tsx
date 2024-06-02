@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { newsPopup } from "./newsPopup";
-import Link from "next/link";
 
 export const newsColumn = (data: any) => {
   return (
@@ -18,16 +17,10 @@ export const newsColumn = (data: any) => {
         return (
           <Dialog>
             <DialogTrigger>{newsCard(item)}</DialogTrigger>
-            <DialogContent>
+            <DialogContent className="h-[calc(100vh-5%)] min-w-[calc(100vw-40%)]">
               <DialogHeader>
                 <DialogTitle>
-                  <Link
-                    href={item.link}
-                    target="_blank"
-                    className="text-lg font-bold mb-3 pb-4"
-                  >
-                    {item.title}
-                  </Link>
+                  Header component with buttons
                 </DialogTitle>
                 <DialogDescription>{newsPopup(item)}</DialogDescription>
               </DialogHeader>
