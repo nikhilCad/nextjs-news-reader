@@ -12,9 +12,13 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      gridTemplateColumns: {
+        'auto-fill-400': 'repeat(auto-fill, minmax(400px, 1fr))',
+        'auto-fit-400': 'repeat(auto-fit, minmax(400px, 1fr))',
+      },
     },
     fontFamily: {
-      sans: ['"PT Sans"', 'sans-serif']
+      sans: ['"Times New Roman"', 'sans-serif']
     },
   },
   plugins: [
