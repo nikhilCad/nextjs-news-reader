@@ -17,9 +17,9 @@ export const newsColumn = (data: any) => {
             {imageUrl &&(<img
               src={imageUrl}
               alt={item.title}
-              className={classes.cardImage}
+              className="w-full"
             ></img>)}
-            <div className={classes.cardContent}>
+            <div className="text-base">
               {getTextEllipsis(item.contentSnippet)}
             </div>
           </div>

@@ -3,8 +3,7 @@ import Parser from "rss-parser";
 const fetchFeed = async () => {
   type CustomFeed = { foo: string };
   type CustomItem = { mediaContent: any };
-
-//   const parser: Parser<CustomFeed, CustomItem> = new Parser(); 
+  
     const parser: Parser<CustomFeed, CustomItem> = new Parser(
         {
             customFields: {

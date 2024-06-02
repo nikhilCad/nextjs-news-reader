@@ -14,7 +14,6 @@ export const parseFeedForImage = (item: any): string => {
         if(item?.mediaContent){
             imageUrl = item?.mediaContent['$'].url
         }
-        
     }
   }
 
