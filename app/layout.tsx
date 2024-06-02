@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import classes from "../styles/heading.module.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex items-center justify-center bg-base-100">
-          <a className={classes.heading}>RSS READER</a>
+          <a className="font-chomsky text-8xl">RSS READER</a>
         </div>
         {children}
       </body>
