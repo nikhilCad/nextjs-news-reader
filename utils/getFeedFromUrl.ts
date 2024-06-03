@@ -14,16 +14,27 @@ const fetchFeed = async (feedList: string[]) => {
 
   var arr: any[] = [];
 
+  var feedWithData: any[] = [];
+
   for( const feed of feedList){
     const feedRes = await parser.parseURL(
           feed
         );
+    // console.log(feedRes);
     arr = [...arr, ...feedRes.items];
+
+    const thisFeed = {
+      name: feedRes.title,
+      description: feedRes.description,
+      items: feedRes.items,
+      url: feedRes.link
+    }
+    feedWithData = [...feedWithData, thisFeed]
 
   }
   arr = sortByIsoDate(arr);
 
-  return arr;
+  return [arr, feedWithData];
 };
 
 export const fetchData = (feedList: string[]) => {
