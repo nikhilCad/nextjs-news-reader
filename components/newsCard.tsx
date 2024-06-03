@@ -23,7 +23,7 @@ const formateDate = (isoDate:any) => {
 export const newsCard = (item: any) => {
   const imageUrl = parseFeedForImage(item);
   return (
-    <div className="bg-slate-800 border-slate-950 rounded-lg m-1 p-4 shadow-lg h-96 relative">
+    <div className="bg-zinc-800 border-slate-950 rounded-lg m-1 p-4 shadow-lg h-96 relative">
       {imageUrl && (
         <img
           src={imageUrl}

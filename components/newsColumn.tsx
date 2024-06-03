@@ -12,7 +12,7 @@ import { newsPopup } from "./newsPopup";
 
 export const newsColumn = (data: any) => {
   return (
-    <div className="flex flex-wrap p-5 bg-slate-900">
+    <div className="flex flex-wrap p-5 bg-zinc-900">
       {data.map((item: any) => {
         return (
           <Dialog>

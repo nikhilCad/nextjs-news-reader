@@ -17,8 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex items-center justify-center bg-base-100">
-          <a className="font-chomsky text-8xl">RSS READER</a>
+        <div className="flex items-center justify-center bg-zinc-900">
+          <a className="font-chomsky text-8xl text-zinc-100">RSS READER</a>
         </div>
         {children}
       </body>
