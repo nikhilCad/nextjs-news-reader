@@ -19,18 +19,25 @@ const formateDate = (isoDate:any) => {
   
   return seconds.toString + "s"
 }
+
 export const newsCard = (item: any) => {
   const imageUrl = parseFeedForImage(item);
   return (
-    <div className="bg-white border-gray-400 rounded-lg m-1 p-4 shadow-lg h-96">
-      <div className="text-lg font-bold mb-3 pb-4">{item.title} {formateDate(item.isoDate)}</div>
+    <div className="bg-slate-800 border-slate-950 rounded-lg m-1 p-4 shadow-lg h-96 relative">
       {imageUrl && (
         <img
           src={imageUrl}
           alt={item.title}
-          className="mb-3 block w-auto h-auto max-w-60 m-auto"
+          className="mb-3 m-auto block h-60 w-60 object-cover"
         ></img>
       )}
+      <div className="text-base text-gray-100 font-bold mb-1 pb-4">{item.title}</div>
+      {!imageUrl && (
+        <div className="text-sm text-gray-300 pt-4 overflow-hidden text-wrap w-60 h-40">
+        {item.contentSnippet}
+      </div>
+      )}
+      <div className="absolute bottom-0 text-gray-300">{formateDate(item.isoDate)}</div>
     </div>
   );
 };

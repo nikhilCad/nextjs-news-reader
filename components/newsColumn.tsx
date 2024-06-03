@@ -12,11 +12,11 @@ import { newsPopup } from "./newsPopup";
 
 export const newsColumn = (data: any) => {
   return (
-    <div className="grid grid-cols-auto-fit-400 p-5 bg-slate-100">
+    <div className="flex flex-wrap p-5 bg-slate-900">
       {data.map((item: any) => {
         return (
           <Dialog>
-            <DialogTrigger>{newsCard(item)}</DialogTrigger>
+            <DialogTrigger className="w-1/4">{newsCard(item)}</DialogTrigger>
             <DialogContent className="h-[calc(100vh-5%)] min-w-[calc(100vw-40%)]">
               <DialogHeader>
                 <DialogTitle>
