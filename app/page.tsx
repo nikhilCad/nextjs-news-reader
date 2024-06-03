@@ -18,7 +18,7 @@ export default function Home() {
       <Sidebar />
       
       <div className="flex flex-col ">
-        {allFeeds.map((item:any)=>{return (newsColumn(item))})}
+        {(newsColumn(allFeeds))}
       </div>
       
     </main>

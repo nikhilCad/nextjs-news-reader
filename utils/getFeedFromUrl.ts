@@ -14,24 +14,14 @@ const fetchFeed = async (feedList: string[]) => {
 
   var arr: any[] = [];
 
-  // feedList.forEach(async (feed:string)=>{
-  //   const feedRes = await parser.parseURL(
-  //     "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
-  //   );
-  //   arr = [...arr, feedRes.items];
-  // })
-
   for( const feed of feedList){
     const feedRes = await parser.parseURL(
           feed
         );
-    arr = [...arr, feedRes.items];
+    arr = [...arr, ...feedRes.items];
 
   }
-
-  // console.log(arr)
-
-  // const arr = feed.items; //.map((item: any) => item.title);
+  arr = sortByIsoDate(arr);
 
   return arr;
 };
@@ -39,3 +29,18 @@ const fetchFeed = async (feedList: string[]) => {
 export const fetchData = (feedList: string[]) => {
   return fetchFeed(feedList);
 };
+
+
+function compare( a: { isoDate: number; }, b: { isoDate: number; } ) {
+  if ( a.isoDate < b.isoDate ){
+    return -1;
+  }
+  if ( a.isoDate > b.isoDate ){
+    return 1;
+  }
+  return 0;
+}
+
+const sortByIsoDate = (arr:any[]) => {
+  return arr.sort ( compare ).reverse();
+}
