@@ -5,13 +5,22 @@ import { fetchData } from "@/utils/getFeedFromUrl";
 import { newsColumn } from "@/components/newsColumn";
 import { Sidebar } from "@/components/sidebar";
 
+const feedsFetched = [
+  "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+  "https://old.reddit.com/.rss",
+  "https://timesofindia.indiatimes.com/rssfeedstopstories.cms"
+];
 
 export default function Home() {
-  const data = use(fetchData);
+  const allFeeds = use(fetchData(feedsFetched));
   return (
-    <main className="flex flex-row ">
+    <main className="flex flex-row">
       <Sidebar />
-      {newsColumn(data)}
+      
+      <div className="flex flex-col ">
+        {allFeeds.map((item:any)=>{return (newsColumn(item))})}
+      </div>
+      
     </main>
   );
 }

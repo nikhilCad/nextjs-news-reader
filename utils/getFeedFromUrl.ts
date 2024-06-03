@@ -1,24 +1,41 @@
 import Parser from "rss-parser";
 
-const fetchFeed = async () => {
+const fetchFeed = async (feedList: string[]) => {
   type CustomFeed = { foo: string };
   type CustomItem = { mediaContent: any };
+
+  const parser: Parser<CustomFeed, CustomItem> = new Parser({
+    customFields: {
+      item: [["media:content", "mediaContent"]],
+    },
+  });
+
   
-    const parser: Parser<CustomFeed, CustomItem> = new Parser(
-        {
-            customFields: {
-              item: [
-                ['media:content', 'mediaContent'],
-              ]
-            }
-          }
-    );
 
-  const feed = await parser.parseURL("https://rss.nytimes.com/services/xml/rss/nyt/World.xml");
+  var arr: any[] = [];
 
-  const arr = feed.items; //.map((item: any) => item.title);
+  // feedList.forEach(async (feed:string)=>{
+  //   const feedRes = await parser.parseURL(
+  //     "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+  //   );
+  //   arr = [...arr, feedRes.items];
+  // })
+
+  for( const feed of feedList){
+    const feedRes = await parser.parseURL(
+          feed
+        );
+    arr = [...arr, feedRes.items];
+
+  }
+
+  // console.log(arr)
+
+  // const arr = feed.items; //.map((item: any) => item.title);
 
   return arr;
 };
 
-export const fetchData = fetchFeed();
+export const fetchData = (feedList: string[]) => {
+  return fetchFeed(feedList);
+};

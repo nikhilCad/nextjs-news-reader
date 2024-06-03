@@ -3,6 +3,12 @@
   @tailwind utilities;
 
   @layer base {
+
+    @font-face {
+      font-family: Chomsky;
+      src: url(../styles/Chomsky.woff) format("woff");
+    }
+
     :root {
       --background: 0 0% 100%;
       --foreground: 240 10% 3.9%;

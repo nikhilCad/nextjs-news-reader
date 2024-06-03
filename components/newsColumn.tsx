@@ -12,7 +12,7 @@ import { newsPopup } from "./newsPopup";
 
 export const newsColumn = (data: any) => {
   return (
-    <div className="grid grid-cols-auto-fit-400 p-5 bg-slate-100 w-screen">
+    <div className="grid grid-cols-auto-fit-400 p-5 bg-slate-100">
       {data.map((item: any) => {
         return (
           <Dialog>
