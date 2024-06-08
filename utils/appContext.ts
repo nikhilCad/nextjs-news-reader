@@ -25,8 +25,15 @@ interface allFeedsState {
   getAllFeeds: () => feed[];
 }
 
+const defaultFeeds = [
+  {name: "NyTimes", url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"},
+  // {name: "Reddit", url: "https://old.reddit.com/.rss"},
+  // {name: "Times of India", url: "https://timesofindia.indiatimes.com/rssfeedstopstories.cms"},
+  {name: "Tech Crunch", url:"https://techcrunch.com/feed/"}
+];
+
 export const useAllFeedsStore = create<allFeedsState>((set, get) => ({
-  allFeeds: [],
+  allFeeds: defaultFeeds,
   setAllFeeds: (newFeeds) => set({ allFeeds: newFeeds }),
   addFeed: (feed) => set((state) => ({ allFeeds: [...state.allFeeds, feed] })),
   removeFeed: (feed) =>

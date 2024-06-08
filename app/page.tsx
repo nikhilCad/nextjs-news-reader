@@ -24,7 +24,7 @@ export default function Home() {
   
   return (
     <main className="flex flex-row">
-      {showSidebar && <Sidebar feedsStr = {JSON.stringify(feedWithNames)} />}
+      {showSidebar && <Sidebar/>}
       
       <div className="flex flex-col ">
         {(newsColumn(allFeeds))}

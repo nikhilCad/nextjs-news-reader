@@ -1,14 +1,26 @@
 'use client';
 
-import { useCurFeedStore } from "@/utils/appContext";
+import { useCurFeedStore, useAllFeedsStore } from "@/utils/appContext";
+import { useEffect, useState } from "react";
 
-const Sidebar = ( {feedsStr} : {feedsStr:any} ) => {
+const Sidebar = ( ) => {
 
-  const feeds = JSON.parse(feedsStr);
+  // const feeds = JSON.parse(feedsStr);
+
+  const feeds = useAllFeedsStore((state) => state.getAllFeeds)();
 
   const getMyString = useCurFeedStore((state) => state.getCurFeedUrl);
   const setMyString = useCurFeedStore((state) => state.setCurFeedUrl);
+    
+  // const [message, setMessage] = useState('')
+
+  //   useEffect(() => {
+  //       fetch('http://localhost:8080/api/hello')
+  //           .then(response => response.json())
+  //           .then(data => setMessage(data.message))
+  //   }, [])
   
+  // console.log(message);
 
   const handleClick = (item:any) => {
     setMyString({

@@ -1,6 +1,8 @@
 ```
 npm run dev
+go run main.go
 ```
+https://www.youtube.com/watch?v=XDHDTGoZ_68
 
 Using tailwind-css, shadcn-ui, and rss-parser
 
