@@ -1,23 +1,28 @@
 import { create } from "zustand";
 
+interface feed{
+  name: string,
+  url: string
+}
+
 interface curFeedState {
-  curFeedUrl: string;
-  setCurFeedUrl: (newFeedUrl: string) => void;
-  getCurFeedUrl: () => string;
+  curFeedUrl: feed;
+  setCurFeedUrl: (newFeedUrl: feed) => void;
+  getCurFeedUrl: () => feed;
 }
 
 export const useCurFeedStore = create<curFeedState>((set, get) => ({
-  curFeedUrl: "ALL",
+  curFeedUrl: {name: "ALL", url:"ALL"},
   setCurFeedUrl: (newFeedUrl) => set({ curFeedUrl: newFeedUrl }),
   getCurFeedUrl: () => get().curFeedUrl,
 }));
 
 interface allFeedsState {
-  allFeeds: string[];
-  setAllFeeds: (newFeeds: string[]) => void;
-  addFeed: (feed: string) => void;
-  removeFeed: (feed: string) => void;
-  getAllFeeds: () => string[];
+  allFeeds: feed[];
+  setAllFeeds: (newFeeds: feed[]) => void;
+  addFeed: (feed: feed) => void;
+  removeFeed: (feed: feed) => void;
+  getAllFeeds: () => feed[];
 }
 
 export const useAllFeedsStore = create<allFeedsState>((set, get) => ({

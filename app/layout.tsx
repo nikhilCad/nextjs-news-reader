@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex items-center justify-center bg-zinc-900">
-          <a className="font-chomsky text-8xl text-zinc-100">RSS READER</a>
-        </div>
+        <Navbar/>
         {children}
       </body>
     </html>
