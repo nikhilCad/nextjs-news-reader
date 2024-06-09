@@ -8,10 +8,9 @@ const Sidebar = ( ) => {
   // const feeds = JSON.parse(feedsStr);
 
   const feeds = useAllFeedsStore((state) => state.getAllFeeds)();
-  const setFeeds = useAllFeedsStore((state) => state.setAllFeeds);
 
-  const getMyString = useCurFeedStore((state) => state.getCurFeedUrl);
-  const setMyString = useCurFeedStore((state) => state.setCurFeedUrl);
+  const getCurFeed = useCurFeedStore((state) => state.getCurFeed);
+  const setCurFeed = useCurFeedStore((state) => state.setCurFeed);
     
   // const [message, setMessage] = useState('')
 
@@ -24,12 +23,11 @@ const Sidebar = ( ) => {
   // console.log(message);
 
   const handleClick = (item:any) => {
-    setMyString({
+    setCurFeed({
       name: item.name,
       url: item.url
     })
-    setFeeds([item])
-    console.log(getMyString());
+    console.log(getCurFeed());
   }
 
   return (

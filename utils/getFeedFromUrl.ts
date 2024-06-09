@@ -10,8 +10,6 @@ const fetchFeed = async (feedList: string[]) => {
     },
   });
 
-  
-
   var arr: any[] = [];
 
   var feedWithData: any[] = [];

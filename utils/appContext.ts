@@ -6,15 +6,15 @@ interface feed{
 }
 
 interface curFeedState {
-  curFeedUrl: feed;
-  setCurFeedUrl: (newFeedUrl: feed) => void;
-  getCurFeedUrl: () => feed;
+  curFeed: feed;
+  setCurFeed: (newFeed: feed) => void;
+  getCurFeed: () => feed;
 }
 
 export const useCurFeedStore = create<curFeedState>((set, get) => ({
-  curFeedUrl: {name: "ALL", url:"ALL"},
-  setCurFeedUrl: (newFeedUrl) => set({ curFeedUrl: newFeedUrl }),
-  getCurFeedUrl: () => get().curFeedUrl,
+  curFeed: {name: "NyTimes", url:"https://rss.nytimes.com/services/xml/rss/nyt/World.xml"},
+  setCurFeed: (newFeed) => set({ curFeed: newFeed }),
+  getCurFeed: () => get().curFeed,
 }));
 
 interface allFeedsState {
