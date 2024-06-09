@@ -8,6 +8,7 @@ const Sidebar = ( ) => {
   // const feeds = JSON.parse(feedsStr);
 
   const feeds = useAllFeedsStore((state) => state.getAllFeeds)();
+  const setFeeds = useAllFeedsStore((state) => state.setAllFeeds);
 
   const getMyString = useCurFeedStore((state) => state.getCurFeedUrl);
   const setMyString = useCurFeedStore((state) => state.setCurFeedUrl);
@@ -28,6 +29,7 @@ const Sidebar = ( ) => {
       url: item.url
     })
     console.log(getMyString());
+    {setFeeds(item)}
   }
 
   return (
@@ -45,14 +47,15 @@ const Sidebar = ( ) => {
 
       {feeds.map((item: any) => {
         return (
-          <button
+          <a
             className="flex flex-row gap-4 w-40 pl-4 items-center 
           text-white text-base rounded-md hover:bg-zinc-600 hover:scale-110 transition-all"
           onClick = {()=>handleClick(item)}
+          key={item.url}
           >
             {getFavicon(item.url)}
             {item.name}
-          </button>
+          </a>
         );
       })}
     </div>

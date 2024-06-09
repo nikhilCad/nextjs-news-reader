@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { newsCard } from "./newsCard";
 import {
@@ -9,8 +11,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { newsPopup } from "./newsPopup";
+import { use } from "react";
+import { fetchData } from "@/utils/getFeedFromUrl";
+import { useAllFeedsStore } from "@/utils/appContext";
 
-export const newsColumn = (data: any) => {
+
+const NewsColumn = () => {
+
+  const feeds = useAllFeedsStore((state) => state.getAllFeeds)();
+
+  const [data, _] = use(fetchData(feeds.map(feed => feed.url)));
+
+
   return (
     <div className="flex flex-wrap p-5 bg-zinc-900">
       {data.map((item: any) => {
@@ -31,3 +43,5 @@ export const newsColumn = (data: any) => {
     </div>
   );
 };
+
+export default  NewsColumn;
