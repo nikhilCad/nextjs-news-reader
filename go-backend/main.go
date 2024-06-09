@@ -1,6 +1,7 @@
 package main
 
 import (
+	// "fmt"
 	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/mmcdole/gofeed"
@@ -11,6 +12,7 @@ type item struct {
 	Title       string `json:"title"`
 	Link        string `json:"link"`
 	Description string `json:"description"`
+	Image string `json:"image"`
 }
 
 type feed struct{
@@ -20,30 +22,49 @@ type feed struct{
 	Items []item `json:"items"`
 }
 
-var fp = gofeed.NewParser()
-var feedParsed, _ = fp.ParseURL("http://feeds.twit.tv/twit.xml")
+var feeds = populateFeeds()
 
-var feeds = populateFeeds(feedParsed)
+func populateFeeds() []feed {
 
-func populateFeeds(feedParsed *gofeed.Feed) []feed {
+	urls := []string{
+		"http://feeds.twit.tv/twit.xml",
+		"https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+	}
+
 	var feeds []feed
 
-	newFeed := feed{
-		Title:       feedParsed.Title,
-		Description: feedParsed.Description,
-		Link:        feedParsed.Link,
-	}
+	var fp = gofeed.NewParser()
 
-	for _, parsedItem := range feedParsed.Items {
-		newItem := item{
-			Title:       parsedItem.Title,
-			Link:        parsedItem.Link,
-			Description: parsedItem.Description,
+	
+	for _, url := range urls {
+
+		var feedParsed, _ = fp.ParseURL(url)
+
+		newFeed := feed{
+			Title:       feedParsed.Title,
+			Description: feedParsed.Description,
+			Link:        feedParsed.Link,
 		}
-		newFeed.Items = append(newFeed.Items, newItem)
-	}
 
-	feeds = append(feeds, newFeed)
+		for _, parsedItem := range feedParsed.Items {
+			
+			imgUrl := ""
+			if parsedItem.Image != nil && parsedItem.Image.URL != "" {
+				imgUrl = parsedItem.Image.URL
+			}
+
+			newItem := item{
+				Title:       parsedItem.Title,
+				Link:        parsedItem.Link,
+				Description: parsedItem.Description,
+				Image: imgUrl,
+			}
+
+			newFeed.Items = append(newFeed.Items, newItem)
+		}
+
+		feeds = append(feeds, newFeed)
+	}
 
 	return feeds
 
