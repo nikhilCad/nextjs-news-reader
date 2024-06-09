@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
+	"github.com/mmcdole/gofeed"
 )
 
 // struct fields need to be uppercase, json field lowercase is just preference
@@ -19,19 +20,34 @@ type feed struct{
 	Items []item `json:"items"`
 }
 
-var feeds = []feed {
-	{
-		Title: "Hacker Earth", 
-		Description: "Coding field", 
-		Link:"http://NA", 
-		Items : []item {
-			{Title:"Hi", Link:"ab", Description:"cd"},
-			{Title:"Hi", Link:"ab", Description:"cd"},
+var fp = gofeed.NewParser()
+var feedParsed, _ = fp.ParseURL("http://feeds.twit.tv/twit.xml")
 
-		},
-	},
+var feeds = populateFeeds(feedParsed)
+
+func populateFeeds(feedParsed *gofeed.Feed) []feed {
+	var feeds []feed
+
+	newFeed := feed{
+		Title:       feedParsed.Title,
+		Description: feedParsed.Description,
+		Link:        feedParsed.Link,
+	}
+
+	for _, parsedItem := range feedParsed.Items {
+		newItem := item{
+			Title:       parsedItem.Title,
+			Link:        parsedItem.Link,
+			Description: parsedItem.Description,
+		}
+		newFeed.Items = append(newFeed.Items, newItem)
+	}
+
+	feeds = append(feeds, newFeed)
+
+	return feeds
+
 }
-	
 
 func getFeeds(context *gin.Context){
 	context.IndentedJSON(http.StatusOK, feeds)
