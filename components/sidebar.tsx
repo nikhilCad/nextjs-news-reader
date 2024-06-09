@@ -8,6 +8,7 @@ const Sidebar = ( ) => {
   // const feeds = JSON.parse(feedsStr);
 
   const feeds = useAllFeedsStore((state) => state.getAllFeeds)();
+  const setFeeds = useAllFeedsStore((state) => state.setAllFeeds);
 
   const getMyString = useCurFeedStore((state) => state.getCurFeedUrl);
   const setMyString = useCurFeedStore((state) => state.setCurFeedUrl);
@@ -27,6 +28,7 @@ const Sidebar = ( ) => {
       name: item.name,
       url: item.url
     })
+    setFeeds([item])
     console.log(getMyString());
   }
 

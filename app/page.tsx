@@ -1,7 +1,7 @@
 import React from "react";
 import { use } from "react";
 import { fetchData } from "@/utils/getFeedFromUrl";
-import { newsColumn } from "@/components/newsColumn";
+import NewsColumn from "@/components/newsColumn";
 import  Sidebar from "@/components/sidebar";
 //import { useCurFeedStore } from "@/utils/appContext";
 
@@ -27,7 +27,7 @@ export default function Home() {
       {showSidebar && <Sidebar/>}
       
       <div className="flex flex-col ">
-        {(newsColumn(allFeeds))}
+        <NewsColumn data={allFeeds} />
       </div>
       
     </main>

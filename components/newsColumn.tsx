@@ -10,7 +10,12 @@ import {
 } from "@/components/ui/dialog";
 import { newsPopup } from "./newsPopup";
 
-export const newsColumn = (data: any) => {
+const NewsColumn = (data: any) => {
+  
+  console.log(Object.keys(data));
+
+  data = data["data"];
+
   return (
     <div className="flex flex-wrap p-5 bg-zinc-900">
       {data.map((item: any) => {
@@ -31,3 +36,5 @@ export const newsColumn = (data: any) => {
     </div>
   );
 };
+
+export default NewsColumn;
