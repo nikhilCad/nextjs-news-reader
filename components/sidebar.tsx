@@ -48,7 +48,8 @@ const Sidebar = ( ) => {
           <button
             className="flex flex-row gap-4 w-40 pl-4 items-center 
           text-white text-base rounded-md hover:bg-zinc-600 hover:scale-110 transition-all"
-          onClick = {()=>handleClick(item)}
+            onClick = {()=>handleClick(item)}
+            key={item.url}
           >
             {getFavicon(item.url)}
             {item.name}
