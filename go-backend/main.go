@@ -3,7 +3,6 @@ package main
 import (
 	// "fmt"
 	"net/http"
-	"regexp"
 	"github.com/gin-gonic/gin"
 	"github.com/mmcdole/gofeed"
 )
@@ -28,7 +27,7 @@ var feeds = populateFeeds()
 func populateFeeds() []feed {
 
 	urls := []string{
-		"http://old.reddit.com/r/terriblefacebookmemes/.rss",
+		"http://feeds.twit.tv/twit.xml",
 		"https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
 	}
 
@@ -52,14 +51,6 @@ func populateFeeds() []feed {
 			imgUrl := ""
 			if parsedItem.Image != nil && parsedItem.Image.URL != "" {
 				imgUrl = parsedItem.Image.URL
-			} else {
-				r, _ := regexp.Compile(`https:\/\/i\.redd\.it\/\w+\.(?:jpeg|png|gif)`)//, parsedItem.Content)
-				imgUrl = r.FindString(parsedItem.Content)
-
-				// TODO handle v.redd.it, text posts and gallery posts
-				// if(imgUrl == ""){
-				// 	imgUrl = parsedItem.Content
-				// }
 			}
 
 			newItem := item{
